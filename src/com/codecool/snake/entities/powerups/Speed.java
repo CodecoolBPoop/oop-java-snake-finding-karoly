@@ -24,6 +24,7 @@ public class Speed extends GameEntity implements Interactable{
     @Override
     public void apply(SnakeHead snakeHead) {
         snakeHead.changeSpeed(3);
+        snakeHead.addScore(10);
         destroy();
 
     }

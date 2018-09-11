@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Bling;
 import com.codecool.snake.entities.powerups.SimplePowerup;
@@ -8,23 +9,24 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500);
+        int frame;
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
+        SnakeHead currentSnake = new SnakeHead(this, 500, 500);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new Speed(this);
-        new Bling(this);
-    }
+
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new Speed(this);
+            new Bling(this);
+        }
 
     public void start() {
         Scene scene = getScene();
@@ -41,7 +43,7 @@ public class Game extends Pane {
                 case RIGHT: Globals.rightKeyDown  = false; break;
             }
         });
-        Globals.gameLoop = new GameLoop();
+        Globals.gameLoop = new GameLoop(this);
         Globals.gameLoop.start();
 
     }
