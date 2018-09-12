@@ -95,7 +95,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             public void run() {
                 speed = 2;
             }
-            }, 10000);
+            }, 3000);
         };
 
     public void addScore(int diff) {

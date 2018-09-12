@@ -2,12 +2,15 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.PoliceCar;
+import com.codecool.snake.entities.enemies.PoliceDog;
 import com.codecool.snake.entities.powerups.Bling;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.powerups.Speed;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
+
+import static com.codecool.snake.Globals.weed;
 
 public class GameLoop extends AnimationTimer {
 
@@ -22,10 +25,12 @@ public class GameLoop extends AnimationTimer {
 
         public void handle(long now){
             int frame = (int) (now / 16666666.6667);
-            if (frame % 600 == 0) new Bling(game); // 10 seconds
-            if (frame % 900 == 0) new SimplePowerup(game); // 15 seconds
-            if (frame % 1950 == 0) new Speed(game); // 32.5 seconds
-            if (frame % 2100 == 0) new SimpleEnemy(game); // 35 seconds
+            if (frame % Utils.randomGenerator(600, 3600) == 0) new SimplePowerup(game);
+            if (frame % Utils.randomGenerator(300, 800) == 0) new Bling(game);
+            if (frame % Utils.randomGenerator(700, 1300) == 0) new SimplePowerup(game);
+            if (frame % Utils.randomGenerator(1500, 2500) == 0) new Speed(game);
+            if (frame % Utils.randomGenerator(120, 300) == 0) new PoliceCar(game);
+            if (frame % Utils.randomGenerator(500, 800) == 0 ) new PoliceDog(game);
 
 
             for (GameEntity gameObject : Globals.gameObjects) {

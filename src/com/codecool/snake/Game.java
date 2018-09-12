@@ -1,7 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
+
 import com.codecool.snake.entities.powerups.Bling;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.powerups.Speed;
@@ -9,15 +9,11 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Game extends Pane {
 
     public Game() {
-        int frame;
 
-        SnakeHead currentSnake = new SnakeHead(this, 500, 500);
+            new SnakeHead(this, 500, 500);
 
 
             new SimplePowerup(this);
