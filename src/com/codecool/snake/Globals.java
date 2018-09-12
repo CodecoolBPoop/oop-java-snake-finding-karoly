@@ -3,7 +3,11 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
+import com.codecool.snake.Game;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.ImagePattern;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,7 +26,11 @@ public class Globals {
     public static Image bling = new Image("bling.png");
     public static Image policeCar = new Image("police_car.png");
     public static Image policeDog = new Image("police_dog.png");
+    public static Image hos = new Image("hos.jpg");
+    public static ImagePattern backgr = new ImagePattern(hos);
     //.. put here the other images you want to use
+
+
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
