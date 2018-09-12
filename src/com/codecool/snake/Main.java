@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -19,8 +21,10 @@ public class Main extends Application {
         Game game = new Game();
         Utils.includeRestartBtn(game);
 
+
+
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT, Color.BURLYWOOD));
+        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT, Globals.backgr));
         primaryStage.show();
         game.start();
 
