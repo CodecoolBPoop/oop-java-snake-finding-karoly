@@ -42,6 +42,11 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
         heading = Utils.directionToVector(direction, speed);
     }
 
+    public PoliceDog( Pane pane, double x, double y) {
+
+    }
+
+
     @Override
     public void step() {
         if (isOutOfBounds()) {
