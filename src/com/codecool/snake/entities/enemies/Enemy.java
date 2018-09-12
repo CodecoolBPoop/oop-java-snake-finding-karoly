@@ -3,7 +3,6 @@ package com.codecool.snake.entities.enemies;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import javafx.scene.layout.Pane;
-
 import java.util.ListIterator;
 
 public abstract class Enemy extends GameEntity {
