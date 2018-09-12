@@ -1,8 +1,10 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.enemies.PoliceCar;
-import com.codecool.snake.entities.enemies.PoliceDog;
+import com.codecool.snake.entities.GameEntity;
+
+import com.codecool.snake.entities.powerups.Bling;
 import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.Speed;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -10,30 +12,17 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500);
 
-        createCar(5);
+            new SnakeHead(this, 500, 500);
 
-        createDog(5);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-
-    }
-
-    public void createDog (int num) {
-        for (int i = 0; i < num; i++) {
-            new PoliceDog(this);
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new SimplePowerup(this);
+            new Speed(this);
+            new Bling(this);
         }
-    }
-
-    private void createCar (int num) {
-        for (int i = 0; i < num; i++) {
-            new PoliceCar(this);
-        }
-    }
 
     public void start() {
         Scene scene = getScene();
@@ -50,7 +39,8 @@ public class Game extends Pane {
                 case RIGHT: Globals.rightKeyDown  = false; break;
             }
         });
-        Globals.gameLoop = new GameLoop();
+        Globals.gameLoop = new GameLoop(this);
         Globals.gameLoop.start();
+
     }
 }
