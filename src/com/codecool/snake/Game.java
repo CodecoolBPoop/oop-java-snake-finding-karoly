@@ -7,14 +7,17 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.powerups.Speed;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+
 
 public class Game extends Pane {
 
     public Game() {
 
-            new SnakeHead(this, 500, 500);
 
+
+            new SnakeHead(this, 500, 500);
 
             new SimplePowerup(this);
             new SimplePowerup(this);
@@ -39,8 +42,12 @@ public class Game extends Pane {
                 case RIGHT: Globals.rightKeyDown  = false; break;
             }
         });
+
+
         Globals.gameLoop = new GameLoop(this);
         Globals.gameLoop.start();
+
+
 
     }
 }

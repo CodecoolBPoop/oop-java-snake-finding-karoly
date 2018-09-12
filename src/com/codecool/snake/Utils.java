@@ -14,6 +14,7 @@ public class Utils {
         double directionInRadians = directionInDegrees / 180 * Math.PI;
         Point2D heading = new Point2D(length * Math.sin(directionInRadians), - length * Math.cos(directionInRadians));
         return heading;
+
     }
 
     public static int randomGenerator(int low, int high) {
@@ -21,6 +22,8 @@ public class Utils {
         int result = random.nextInt(high-low) + low;
         return result;
 
-
     }
+
+    
+
 }
