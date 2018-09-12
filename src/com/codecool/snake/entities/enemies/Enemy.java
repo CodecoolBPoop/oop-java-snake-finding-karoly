@@ -20,12 +20,18 @@ public abstract class Enemy extends GameEntity {
     public boolean isSpawningOnSnake(double x, double y) {
         ListIterator<SnakeBody> li = SnakeBody.bodyElements.listIterator();
         //the first body element is more protected from enemy spawning to protect head as well
-        if(li.next().getX() <= x+DISTANCE_FROM_HEAD && li.next().getX() >= x-DISTANCE_FROM_HEAD &&
-           li.next().getY() <= y+DISTANCE_FROM_HEAD && li.next().getY() >= y-DISTANCE_FROM_HEAD) {
-            return false;
+        if (li.hasNext()){
+            SnakeBody firstBody = li.next();
+            if(firstBody.getX() <= x+DISTANCE_FROM_HEAD && firstBody.getX() >= x-DISTANCE_FROM_HEAD &&
+                    firstBody.getY() <= y+DISTANCE_FROM_HEAD && firstBody.getY() >= y-DISTANCE_FROM_HEAD) {
+                return false;
+            }
         }
-        while (li.hasNext()) if ((li.next().getX() <= (x + DISTANCE_FROM_BODY)) && (li.next().getX() >= (x - DISTANCE_FROM_BODY)) &&
-                (li.next().getY() <= (y + DISTANCE_FROM_BODY)) && (li.next().getY() >= (y - DISTANCE_FROM_BODY))) return true;
+        while (li.hasNext()) {
+            SnakeBody currentBody = li.next();
+            if ((currentBody.getX() <= (x + DISTANCE_FROM_BODY)) && (currentBody.getX() >= (x - DISTANCE_FROM_BODY)) &&
+                (currentBody.getY() <= (y + DISTANCE_FROM_BODY)) && (currentBody.getY() >= (y - DISTANCE_FROM_BODY))) return true;
+        }
         return false;
     }
 

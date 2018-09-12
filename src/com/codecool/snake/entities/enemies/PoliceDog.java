@@ -9,8 +9,6 @@ import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-
-import java.util.ListIterator;
 import java.util.Random;
 
 public class PoliceDog extends Enemy implements Animatable, Interactable {
@@ -43,7 +41,19 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
     }
 
     public PoliceDog( Pane pane, double x, double y) {
+        super(pane);
+        setImage(Globals.policeDog);
+        pane.getChildren().add(this);
 
+        setX(x);
+        setY(y);
+
+        int speed = 1;
+        Random rnd = new Random();
+
+        double direction = rnd.nextDouble() * 360;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
     }
 
 
