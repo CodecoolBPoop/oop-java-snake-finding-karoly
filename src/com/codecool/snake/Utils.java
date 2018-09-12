@@ -6,38 +6,21 @@ import javafx.geometry.Point2D;
 
 import java.util.Random;
 
-
-import javafx.scene.control.*; //button class
-import javafx.application.Application;
+//for button
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
+
 
 // for pop up
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextInputDialog;
-import  javafx.scene.control.ChoiceDialog;
-
-import java.util.Optional;
 import javafx.application.Platform;
 
 
 public class Utils {
 
-    public static Stage newprimaryStage;
+    public static Game currentGame;
 
     /*
     Converts a direction in degrees (0...360) to x and y coordinates.
@@ -59,47 +42,40 @@ public class Utils {
 
     // display a restart button and restart the application
     public static void includeRestartBtn(Game game) {
+        currentGame = game;
         Button button1 = new Button("Restart");
         button1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 System.out.println("The application restarts");
-                restart();
-
+                currentGame.restart();
 
             }
         });
         game.getChildren().add(button1);
     }
 
-    public static void restart() {
-        Main main = new Main();
-        main.restart(newprimaryStage);
-
-    }
 
     // display popup and end game
     public static void popUpShowWhenGameOver() {
-//        Alert alert = new Alert(AlertType.NONE, "Gameover! Would you like to restart the game? ", ButtonType.YES, ButtonType.NO);
-//
-//        System.out.println("Pop up alert");
-//
-//        alert.showAndWait();
-//
-//        if (alert.getResult() == ButtonType.YES) {
-//            System.out.println("Answer yes");
-//            alert.close();
-//            restart();
-//
-//
-//        }else if(alert.getResult() == ButtonType.NO){
-//            System.out.println("Exit game");
-//            Platform.exit();
-//            }
-//        }
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.NONE, "Gameover! Would you like to restart the game? ", ButtonType.YES, ButtonType.NO);
 
-        //Platform.runLater(()-> {
-        //});
+            System.out.println("Pop up alert");
+
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                System.out.println("Restarting");
+                currentGame.restart();
+
+            } else if (alert.getResult() == ButtonType.NO) {
+                System.out.println("Exit game");
+                Platform.exit();
+            }
+        });
     }
+
 }
+
 

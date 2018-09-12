@@ -17,7 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Game game = new Game();
-        Utils.newprimaryStage = primaryStage;
         Utils.includeRestartBtn(game);
 
         primaryStage.setTitle("Snake Game");
@@ -25,12 +24,6 @@ public class Main extends Application {
         primaryStage.show();
         game.start();
 
-    }
-
-    public void restart(Stage primaryStage){
-        primaryStage.close();
-        Globals.gameLoop.stop();
-        start(primaryStage);
     }
 
 }
