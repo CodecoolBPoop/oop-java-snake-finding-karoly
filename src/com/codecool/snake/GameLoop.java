@@ -25,15 +25,14 @@ public class GameLoop extends AnimationTimer {
 
         public void handle(long now){
             int frame = (int) (now / 16666666.6667);
-            if (frame % Utils.randomGenerator(600, 3600) == 0) new SimplePowerup(game);
             if (frame % Utils.randomGenerator(300, 800) == 0) new Bling(game);
-            if (frame % Utils.randomGenerator(700, 1300) == 0) new SimplePowerup(game);
-            if (frame % Utils.randomGenerator(1500, 2500) == 0) new Speed(game);
-            if (frame % Utils.randomGenerator(120, 300) == 0) {
+            if (frame % Utils.randomGenerator(300, 1000) == 0) new SimplePowerup(game);
+            if (frame % Utils.randomGenerator(1300, 2500) == 0) new Speed(game);
+            if (frame % Utils.randomGenerator(100, 300) == 0) {
                 new PoliceCar(game);
                 Globals.police.play();
             }
-            if (frame % Utils.randomGenerator(200, 300) == 0 ) {
+            if (frame % Utils.randomGenerator(100, 300) == 0 ) {
                 new PoliceDog(game);
                 Globals.barking.play();
 
