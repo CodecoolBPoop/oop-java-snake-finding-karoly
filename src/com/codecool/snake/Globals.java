@@ -2,9 +2,13 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import com.codecool.snake.Game;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -31,7 +35,7 @@ public class Globals {
     public static Image policeCar = new Image("police_car.png");
     public static Image policeDog = new Image("police_dog.png");
     public static Image hos = new Image("hos.jpg");
-    public static ImagePattern backgr = new ImagePattern(hos);
+    public static Background backgr = new Background(new BackgroundFill(new ImagePattern(hos), CornerRadii.EMPTY, Insets.EMPTY ));
     public static AudioClip barking = new AudioClip(new File("resources/dog_bark4.wav").toURI().toString());
     public static AudioClip police = new AudioClip(new File("resources/police_siren.wav").toURI().toString());
     public static AudioClip ganja = new AudioClip(new File("resources/ganja.wav").toURI().toString());

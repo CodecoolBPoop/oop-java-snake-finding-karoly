@@ -24,8 +24,9 @@ public class Main extends Application {
 
 
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT, Globals.backgr));
+        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.show();
+        game.setBackground(Globals.backgr);
         game.start();
 
     }

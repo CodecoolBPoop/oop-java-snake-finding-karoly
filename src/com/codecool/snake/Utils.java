@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.application.Platform;
+import javafx.scene.layout.Background;
 
 
 public class Utils {
@@ -53,13 +54,14 @@ public class Utils {
             }
         });
         game.getChildren().add(button1);
+        game.setBackground(Globals.backgr);
     }
 
 
     // display popup and end game
     public static void popUpShowWhenGameOver() {
         Platform.runLater(() -> {
-            Alert alert = new Alert(AlertType.NONE, "Gameover! Would you like to restart the game? ", ButtonType.YES, ButtonType.NO);
+            Alert alert = new Alert(AlertType.NONE, "BUSTED! Would you like to restart the game? ", ButtonType.YES, ButtonType.NO);
 
             System.out.println("Pop up alert");
 
@@ -74,6 +76,11 @@ public class Utils {
                 Platform.exit();
             }
         });
+    }
+
+    public static void startPopup() {
+        Alert alert = new Alert(AlertType.NONE, "Press ENTER to start the game", ButtonType.OK);
+        alert.showAndWait();
     }
 
 }
