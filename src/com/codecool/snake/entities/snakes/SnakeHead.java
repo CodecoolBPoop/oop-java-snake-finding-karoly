@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.function.Function;
 
 // displayHealth
 import javafx.scene.text.Text;
@@ -26,11 +27,11 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private static int health = 100;
-    private static int score;
+    private static int score = 0;
     private boolean gameOn;
 
-    // displayHealth
-    private static Text text = new Text();
+    private static Text displayHealth = new Text();
+    private static Text displayScore = new Text();
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -38,7 +39,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(xc);
         setY(yc);
         tail = this;
-        score = 0;
         setImage(Globals.snakeHead);
         this.gameOn = true;
         pane.getChildren().add(this);
@@ -47,6 +47,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         addPart(4);
     }
 
+
+    // Snake movement
     public void step() {
         double dir = getRotate();
         if (Globals.leftKeyDown) {
@@ -82,6 +84,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
+    // Change SnakeBody
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
@@ -90,29 +93,24 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void changeHealth(int diff) {
-        health += diff;
-        text.setText("Health: " + getHealth());
-        System.out.println("Health changed");
+    public void removePart(int numParts) {
+        for (int i = 0; i < numParts; i++) {
+
+        }
+    }
+
+
+    // Getters
+    public static int getScore() {
+        return score;
     }
 
     public static int getHealth(){
         return health;
     }
 
-    public static void displayHealth(Game game){
-        resetHealth();
-        text.setText("Health: " + getHealth());
-        text.setX(0);
-        text.setY(50);
-        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-        text.setFill(Color.BROWN);
 
-        game.getChildren().add(text);
-        System.out.println("Health is shown");
-    }
-
-
+    // Change fields
     public void changeSpeed(int diff) {
         speed += diff;
         Timer timer = new Timer();
@@ -126,18 +124,22 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addScore(int diff) {
         score += diff;
+        displayScore.setText("Score: " + getScore());
     }
 
+    public void changeHealth(int diff) {
+        health += diff;
+        displayHealth.setText("Health: " + getHealth());
+        System.out.println("Health changed");
+    }
 
     public boolean isGameOn() {
         return this.gameOn;
 
     }
 
-    public void setTail(SnakeBody snakeBody) {
-        this.tail = snakeBody;
-    }
 
+    // Resetters
     public static void resetScore(){
         score = 0;
     }
@@ -148,6 +150,29 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public static void resetSpeed(){
         speed = 2;
+    }
+
+
+    //  Display Items
+    public static void displayHealth(Game game){
+        resetHealth();
+        displayItem(game,850,50, getHealth() ,displayHealth, "Health: ");
+        System.out.println("Health is shown");
+    }
+
+    public static void displayScore(Game game){
+        displayItem(game,850,80, getScore() ,displayScore, "Score: ");
+        System.out.println("Score is shown");
+    }
+
+    private static void displayItem(Game game, int setX, int setY, int getter, Text text, String itemName){
+        text.setText(itemName + getter);
+        text.setX(setX);
+        text.setY(setY);
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        text.setFill(Color.BROWN);
+
+        game.getChildren().add(text);
     }
 }
 

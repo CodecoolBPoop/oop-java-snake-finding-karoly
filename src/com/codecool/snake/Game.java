@@ -58,6 +58,7 @@ public class Game extends Pane {
     private void init(){
         Utils.includeRestartBtn(this);
         SnakeHead.displayHealth(this);
+        SnakeHead.displayScore(this);
 
         new SnakeHead(this, 500, 500);
 
