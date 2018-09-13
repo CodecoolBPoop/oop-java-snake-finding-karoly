@@ -5,9 +5,13 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
 import com.codecool.snake.Game;
 import javafx.scene.layout.Background;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +32,9 @@ public class Globals {
     public static Image policeDog = new Image("police_dog.png");
     public static Image hos = new Image("hos.jpg");
     public static ImagePattern backgr = new ImagePattern(hos);
+    public static AudioClip barking = new AudioClip(new File("resources/dog_bark4.wav").toURI().toString());
+    public static AudioClip police = new AudioClip(new File("resources/police_siren.wav").toURI().toString());
+    public static AudioClip ganja = new AudioClip(new File("resources/ganja.wav").toURI().toString());
     //.. put here the other images you want to use
 
 
