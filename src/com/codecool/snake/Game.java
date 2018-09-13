@@ -38,6 +38,7 @@ public class Game extends Pane {
 
 
         Globals.gameLoop = new GameLoop(this);
+        Utils.startPopup();
         Globals.gameLoop.start();
     }
 

@@ -50,16 +50,22 @@ public abstract class Enemy extends GameEntity {
                             sH = ((SnakeHead) currentEntity);
                         }
                     }
-                    ListIterator<SnakeBody> li = SnakeBody.bodyElements.listIterator();
-                    while (li.hasNext()) {
-                        SnakeBody currentBody = li.next();
-                        if (currentBody.equals(entity)) {
-                            sH.setTail(currentBody);
-                            while (li.hasNext())
-                                li.next().destroy();
+                    if(!SnakeBody.bodyElements.isEmpty()){
+                        ListIterator<SnakeBody> li = SnakeBody.bodyElements.listIterator();
+                        while (li.hasNext()) {
+                            SnakeBody currentBody = li.next();
+                            if (currentBody.equals(entity)) {
+                                sH.setTail(currentBody);
+                                while (li.hasNext())
+                                    li.next().destroy();
                                 sH.changeHealth(ENEMY_DAMAGE_PER_BODY);
+                            }
                         }
+                    } else {
+                        sH.setTail(sH);
+                        System.out.println("böe");
                     }
+
                     System.out.println("Enemy damage. Health is: " + sH.getHealth());
                 }
             }

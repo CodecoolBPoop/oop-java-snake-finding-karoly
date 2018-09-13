@@ -27,6 +27,7 @@ public class SnakeBody extends GameEntity implements Animatable {
         List<Node> children = pane.getChildren();
         children.add(children.indexOf(parent), this);
 
+
         double xc = parent.getX();
         double yc = parent.getY();
         setX(xc);
@@ -38,9 +39,10 @@ public class SnakeBody extends GameEntity implements Animatable {
 
     public void step() {
         Vec2d pos = history.poll(); // remove the oldest item from the history
-        setX(pos.x);
-        setY(pos.y);
-        history.add(new Vec2d(parent.getX(), parent.getY())); // add the parent's current position to the beginning of the history
+            setX(pos.x);
+            setY(pos.y);
+            history.add(new Vec2d(parent.getX(), parent.getY()));
+        // add the parent's current position to the beginning of the history
     }
 
 }
