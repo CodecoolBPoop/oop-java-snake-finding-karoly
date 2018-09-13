@@ -35,6 +35,7 @@ public class Globals {
     public static AudioClip barking = new AudioClip(new File("resources/dog_bark4.wav").toURI().toString());
     public static AudioClip police = new AudioClip(new File("resources/police_siren.wav").toURI().toString());
     public static AudioClip ganja = new AudioClip(new File("resources/ganja.wav").toURI().toString());
+    public static AudioClip coins = new AudioClip(new File("resources/coins.mp3").toURI().toString());
     //.. put here the other images you want to use
 
 

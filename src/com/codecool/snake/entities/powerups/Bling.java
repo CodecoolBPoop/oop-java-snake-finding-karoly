@@ -25,6 +25,7 @@ public class Bling extends GameEntity implements Interactable{
     public void apply(SnakeHead snakeHead) {
         snakeHead.addScore(50);
         destroy();
+        Globals.coins.play();
 
     }
 
