@@ -5,16 +5,21 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class PoliceDog extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
+    private boolean firstBodyFound;
 
     public PoliceDog(Pane pane) {
         super(pane);
@@ -62,6 +67,33 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
         }
+
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
+                if (entity instanceof SnakeBody) {
+                    SnakeHead sH = null;
+                    firstBodyFound = false;
+                    ListIterator<GameEntity> gameEntityListIterator = Globals.getGameObjects().listIterator();
+                    while (gameEntityListIterator.hasNext()) {
+                        GameEntity currentEntity = gameEntityListIterator.next();
+                        if (currentEntity instanceof SnakeHead) {
+                            sH = ((SnakeHead) currentEntity);
+                        }
+                    }
+                    ListIterator<SnakeBody> li = SnakeBody.bodyElements.listIterator();
+                    while (li.hasNext()) {
+                        SnakeBody currentBody = li.next();
+                        if (currentBody.equals(entity)) {
+                            sH.setTail(currentBody);
+                            while (li.hasNext())
+                                li.next().destroy();
+                        }
+                    }
+                    System.out.println("Dog intersects snakebody.");
+                }
+            }
+        }
+
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }

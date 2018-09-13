@@ -16,7 +16,7 @@ public class SnakeBody extends GameEntity implements Animatable {
     private GameEntity parent;
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
-    public static List<SnakeBody> bodyElements = new LinkedList<SnakeBody>();
+    public static List<SnakeBody> bodyElements = new LinkedList<>();
 
     public SnakeBody(Pane pane, GameEntity parent) {
         super(pane);

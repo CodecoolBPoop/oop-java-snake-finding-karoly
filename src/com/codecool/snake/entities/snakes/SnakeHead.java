@@ -90,12 +90,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void removePart(int numParts) {
-        for (int i = 0; i < numParts; i++) {
-
-        }
-    }
-
     public void changeHealth(int diff) {
         health += diff;
         text.setText("Health: " + getHealth());
@@ -138,6 +132,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     public boolean isGameOn() {
         return this.gameOn;
 
+    }
+
+    public void setTail(SnakeBody snakeBody) {
+        this.tail = snakeBody;
     }
 
     public static void resetScore(){
