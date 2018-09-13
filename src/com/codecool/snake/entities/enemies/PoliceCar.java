@@ -57,6 +57,7 @@ public class PoliceCar extends Enemy implements Animatable, Interactable {
                 }
             }
         }
+        handleEnemySnakeIntersection();
 
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());

@@ -67,32 +67,7 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
         }
-
-        for (GameEntity entity : Globals.getGameObjects()) {
-            if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
-                if (entity instanceof SnakeBody) {
-                    SnakeHead sH = null;
-                    firstBodyFound = false;
-                    ListIterator<GameEntity> gameEntityListIterator = Globals.getGameObjects().listIterator();
-                    while (gameEntityListIterator.hasNext()) {
-                        GameEntity currentEntity = gameEntityListIterator.next();
-                        if (currentEntity instanceof SnakeHead) {
-                            sH = ((SnakeHead) currentEntity);
-                        }
-                    }
-                    ListIterator<SnakeBody> li = SnakeBody.bodyElements.listIterator();
-                    while (li.hasNext()) {
-                        SnakeBody currentBody = li.next();
-                        if (currentBody.equals(entity)) {
-                            sH.setTail(currentBody);
-                            while (li.hasNext())
-                                li.next().destroy();
-                        }
-                    }
-                    System.out.println("Dog intersects snakebody.");
-                }
-            }
-        }
+        handleEnemySnakeIntersection();
 
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
