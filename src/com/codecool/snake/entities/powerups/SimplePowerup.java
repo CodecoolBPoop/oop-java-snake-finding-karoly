@@ -27,6 +27,7 @@ public class SimplePowerup extends GameEntity implements Interactable {
         snakeHead.addScore(5);
         snakeHead.changeHealth(10);
         destroy();
+        Globals.ganja.play();
     }
 
     @Override
