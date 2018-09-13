@@ -3,7 +3,9 @@ package com.codecool.snake.entities.enemies;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
@@ -45,8 +47,26 @@ public class PoliceCar extends Enemy implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
         }
+
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
+                if (entity instanceof SimplePowerup) {
+                    entity.destroy();
+                    createPoliceDog(2);
+                    System.out.println("Cop found weed.");
+                }
+            }
+        }
+        handleEnemySnakeIntersection();
+
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+    }
+
+    private void createPoliceDog(int num) {
+        for (int i = 0; i < num; i++) {
+            new PoliceDog(pane, this.getX(), this.getY());
+        }
     }
 
     @Override

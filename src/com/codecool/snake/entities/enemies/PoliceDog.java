@@ -5,11 +5,13 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
@@ -17,6 +19,7 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
+    private boolean firstBodyFound;
 
     public PoliceDog(Pane pane) {
         super(pane);
@@ -42,11 +45,30 @@ public class PoliceDog extends Enemy implements Animatable, Interactable {
         heading = Utils.directionToVector(direction, speed);
     }
 
+    public PoliceDog( Pane pane, double x, double y) {
+        super(pane);
+        setImage(Globals.policeDog);
+        pane.getChildren().add(this);
+
+        setX(x);
+        setY(y);
+
+        int speed = 1;
+        Random rnd = new Random();
+
+        double direction = rnd.nextDouble() * 360;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
+    }
+
+
     @Override
     public void step() {
         if (isOutOfBounds()) {
             destroy();
         }
+        handleEnemySnakeIntersection();
+
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
