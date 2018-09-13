@@ -78,7 +78,8 @@ public class SnakeHead extends GameEntity implements Animatable {
             System.out.println("Score: " + this.score);
             this.gameOn = false;
             Globals.gameLoop.stop();
-            Utils.popUpShowWhenGameOver();
+//            Utils.popUpShowWhenGameOver();
+            Utils.gameOver();
 
         }
     }

@@ -19,17 +19,16 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Game game = new Game();
-        Utils.includeRestartBtn(game);
 
-
-
-        primaryStage.setTitle("Snake Game");
+        primaryStage.setTitle("Snake Game Menu");
         primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.show();
-        game.setBackground(Globals.backgr);
-        game.start();
+        game.setBackground(Globals.menuBackgr);
+
+        Utils.includeMenuButtons(game);
 
     }
+
 
 }
 
