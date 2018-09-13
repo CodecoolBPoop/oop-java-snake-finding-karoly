@@ -25,7 +25,8 @@ public class Globals {
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
-
+    public static Image snakeBusted = new Image("SnakeBusted.png");
+    public static Image snakeGameMenu = new Image("SnakeGameMenu.png");
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
@@ -35,7 +36,9 @@ public class Globals {
     public static Image policeCar = new Image("police_car.png");
     public static Image policeDog = new Image("police_dog.png");
     public static Image hos = new Image("hos.jpg");
+    public static Background menuBackgr = new Background(new BackgroundFill(new ImagePattern(snakeGameMenu), CornerRadii.EMPTY, Insets.EMPTY ));
     public static Background backgr = new Background(new BackgroundFill(new ImagePattern(hos), CornerRadii.EMPTY, Insets.EMPTY ));
+    public static Background bustedBackgr = new Background(new BackgroundFill(new ImagePattern(snakeBusted), CornerRadii.EMPTY, Insets.EMPTY ));
     public static AudioClip barking = new AudioClip(new File("resources/dog_bark4.wav").toURI().toString());
     public static AudioClip police = new AudioClip(new File("resources/police_siren.wav").toURI().toString());
     public static AudioClip ganja = new AudioClip(new File("resources/ganja.wav").toURI().toString());

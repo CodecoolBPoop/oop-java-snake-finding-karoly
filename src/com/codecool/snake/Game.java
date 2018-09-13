@@ -38,7 +38,7 @@ public class Game extends Pane {
 
 
         Globals.gameLoop = new GameLoop(this);
-        Utils.startPopup();
+        //Utils.startPopup();
         Globals.gameLoop.start();
     }
 
@@ -57,7 +57,7 @@ public class Game extends Pane {
     }
 
     private void init(){
-        Utils.includeRestartBtn(this);
+//        Utils.includeRestartBtn(this);
         SnakeHead.displayHealth(this);
         SnakeHead.displayScore(this);
 
